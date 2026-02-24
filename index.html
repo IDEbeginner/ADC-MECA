@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 
-<html lang="fr" data-theme="dark">
+<html lang="fr" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#0b0b0b">
+    <meta name="theme-color" content="#ffffff">
     <title>ADC MECA — Garage Automobile à Biganos</title>
     <meta name="description" content="ADC MECA — Arthur Del Campo. Garage automobile à Biganos. Mécanique, diagnostic, entretien. Devis gratuit.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -829,7 +829,7 @@ function applyTheme(theme) {
 }
 // Restore saved theme
 (function(){
-    const saved = localStorage.getItem('theme') || 'dark';
+    const saved = localStorage.getItem('theme') || 'light';
     document.documentElement.setAttribute('data-theme', saved);
     document.querySelector('meta[name="theme-color"]').content = saved === 'dark' ? '#0b0b0b' : '#ffffff';
     if (document.readyState === 'loading') {
