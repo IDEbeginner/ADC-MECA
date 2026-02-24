@@ -128,7 +128,7 @@
     /* Burger */
     .burger {
         display: none; width: 40px; height: 40px; border-radius: 8px;
-        border: 2px solid #555; background: var(--bg3);
+        border: 2px solid var(--t2); background: transparent;
         cursor: pointer; flex-direction: column; align-items: center;
         justify-content: center; gap: 5px; flex-shrink: 0;
         transition: border-color 0.3s;
@@ -138,8 +138,6 @@
         border-radius: 2px; transition: all 0.3s;
     }
     .burger.active { border-color: #e67e22; }
-    [data-theme="light"] .burger { border-color: #d4d4d8; background: #f4f4f5; }
-    [data-theme="light"] .burger span { background: #111; }
     .burger.active span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
     .burger.active span:nth-child(2) { opacity: 0; }
     .burger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
@@ -376,6 +374,38 @@
     .map-box iframe { display: block; width: 100%; height: 100%; border: none; }
     .map-link { display: inline-flex; margin-top: 1.2rem; }
 
+    /* ── AVIS CLIENTS ── */
+    .avis-header-row {
+        display: flex; align-items: center; justify-content: center; gap: 1.5rem;
+        margin-bottom: 2.5rem; flex-wrap: wrap;
+    }
+    .avis-score { text-align: center; }
+    .avis-score .big-note { font-family: 'Oswald', sans-serif; font-size: 3.5rem; color: #e67e22; line-height: 1; }
+    .avis-score .out-of { font-size: 0.85rem; color: var(--t2); }
+    .avis-stars { display: flex; gap: 0.2rem; margin: 0.3rem 0; }
+    .avis-stars .star { color: #e67e22; font-size: 1.4rem; }
+    .avis-stars .star.empty { color: var(--t3); }
+    .avis-count { font-size: 0.85rem; color: var(--t2); }
+    .avis-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.2rem; margin-bottom: 2.5rem; }
+    .avis-card {
+        background: var(--bg3); border: 1px solid var(--bdr); border-radius: 12px;
+        padding: 1.8rem; box-shadow: var(--card-shadow); transition: all 0.3s;
+    }
+    .avis-card:hover { transform: translateY(-3px); border-color: #e67e22; }
+    .avis-card-header { display: flex; align-items: center; gap: 0.8rem; margin-bottom: 1rem; }
+    .avis-avatar {
+        width: 40px; height: 40px; border-radius: 50%; background: #e67e22;
+        display: flex; align-items: center; justify-content: center;
+        font-weight: 700; color: #fff; font-size: 1rem; flex-shrink: 0;
+    }
+    .avis-name { font-weight: 600; font-size: 0.9rem; }
+    .avis-date { font-size: 0.75rem; color: var(--t3); }
+    .avis-card-stars { display: flex; gap: 0.15rem; margin-bottom: 0.8rem; }
+    .avis-card-stars .star { color: #e67e22; font-size: 1rem; }
+    .avis-card p { color: var(--t2); font-size: 0.88rem; font-weight: 300; line-height: 1.7; font-style: italic; }
+    .avis-cta { text-align: center; }
+    .google-icon { display: inline-block; vertical-align: middle; margin-right: 0.4rem; }
+
     /* ── CONTACT ── */
     .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px,1fr)); gap: 1.2rem; }
     .contact-card {
@@ -605,6 +635,73 @@
     </div>
 </section>
 
+<!-- ═══ AVIS CLIENTS ═══ -->
+
+<section id="avis" class="sec-alt">
+    <div class="container">
+        <div class="s-head reveal">
+            <span class="s-label">Avis clients</span>
+            <h2 class="s-title">Ce qu'ils pensent de nous</h2>
+        </div>
+
+```
+    <div class="avis-header-row reveal">
+        <div class="avis-score">
+            <div class="big-note">5.0</div>
+            <div class="avis-stars">
+                <span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span>
+            </div>
+            <div class="out-of">sur 5</div>
+        </div>
+        <div>
+            <div class="avis-count">Basé sur les avis Google</div>
+            <a href="https://search.google.com/local/writereview?placeid=ChIJ4XfeYYeZVA4RxCMLlji64e8" target="_blank" class="btn btn-r" style="margin-top:0.8rem; font-size:0.75rem; padding:0.6rem 1.2rem;">
+                <span class="google-icon"><svg width="16" height="16" viewBox="0 0 24 24"><path fill="#fff" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 0 1-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z"/><path fill="#fff" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#fff" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#fff" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg></span>
+                Laisser un avis
+            </a>
+        </div>
+    </div>
+
+    <div class="avis-grid reveal">
+        <!-- AVIS 1 — Remplace par de vrais avis -->
+        <div class="avis-card">
+            <div class="avis-card-header">
+                <div class="avis-avatar">M</div>
+                <div><div class="avis-name">Marie L.</div><div class="avis-date">Il y a 2 semaines</div></div>
+            </div>
+            <div class="avis-card-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+            <p>« Super garage ! Arthur est très professionnel, le diagnostic était rapide et précis. Tarifs très corrects, je recommande vivement. »</p>
+        </div>
+        <!-- AVIS 2 -->
+        <div class="avis-card">
+            <div class="avis-card-header">
+                <div class="avis-avatar">P</div>
+                <div><div class="avis-name">Pierre D.</div><div class="avis-date">Il y a 1 mois</div></div>
+            </div>
+            <div class="avis-card-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+            <p>« Travail soigné et honnête. Il a pris le temps de m'expliquer les réparations nécessaires. Je reviendrai sans hésiter. »</p>
+        </div>
+        <!-- AVIS 3 -->
+        <div class="avis-card">
+            <div class="avis-card-header">
+                <div class="avis-avatar">S</div>
+                <div><div class="avis-name">Sophie B.</div><div class="avis-date">Il y a 1 mois</div></div>
+            </div>
+            <div class="avis-card-stars"><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span><span class="star">★</span></div>
+            <p>« Réactif, compétent et très sympa. Mon véhicule a été réparé en un temps record. Merci Arthur ! »</p>
+        </div>
+    </div>
+
+    <div class="avis-cta reveal">
+        <a href="https://search.google.com/local/writereview?placeid=ChIJ4XfeYYeZVA4RxCMLlji64e8" target="_blank" class="btn btn-o">
+            Voir tous les avis Google →
+        </a>
+    </div>
+</div>
+```
+
+</section>
+
 <!-- ═══ CONTACT ═══ -->
 
 <section id="contact" class="sec-alt">
@@ -707,14 +804,8 @@ function applyTheme(theme) {
     const moonEl = document.querySelector('.theme-toggle .moon');
     const sunEl = document.querySelector('.theme-toggle .sun');
     
-    const burgerEl = document.querySelector('.burger');
-    
     if (moonEl) moonEl.style.display = theme === 'dark' ? 'inline' : 'none';
     if (sunEl) sunEl.style.display = theme === 'light' ? 'inline' : 'none';
-    if (burgerEl) {
-        burgerEl.style.borderColor = theme === 'dark' ? '#555' : '#d4d4d8';
-        burgerEl.style.background = theme === 'dark' ? '#1a1a1a' : '#f4f4f5';
-    }
     
     if (theme === 'light') {
         b.style.background = '#ffffff';
