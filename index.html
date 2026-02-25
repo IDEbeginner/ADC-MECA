@@ -43,8 +43,6 @@
     [data-theme="light"] footer { background: #f4f4f5; }
     [data-theme="light"] header { background: rgba(255,255,255,0.92); border-bottom: 1px solid #d4d4d8; }
     [data-theme="light"] .logo-text { color: #111; }
-    [data-theme="light"] .mobile-menu { background: #fff; border-left: 1px solid #d4d4d8; }
-    [data-theme="light"] .mobile-menu a { color: #111; border-bottom-color: #e4e4e7; }
     [data-theme="light"] .srv { background: #fff; border-color: #d4d4d8; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
     [data-theme="light"] .srv:hover { background: #fafafa; }
     [data-theme="light"] .srv h3 { color: #111; }
@@ -172,6 +170,10 @@
         transition: color 0.3s;
     }
     .mobile-menu a:hover { color: #e67e22; }
+    [data-theme="dark"] .mobile-menu { background: #151515; border-left-color: #333; }
+    [data-theme="dark"] .mobile-menu a { color: #f0f0f0; border-bottom-color: #333; }
+    [data-theme="light"] .mobile-menu { background: #fff; border-left-color: #d4d4d8; }
+    [data-theme="light"] .mobile-menu a { color: #111; border-bottom-color: #e4e4e7; }
     .mobile-overlay {
         display: none; position: fixed; inset: 0; z-index: 998;
         background: rgba(0,0,0,0.5);
@@ -797,6 +799,16 @@ function applyTheme(theme) {
     
     if (moonEl) moonEl.style.display = theme === 'dark' ? 'inline' : 'none';
     if (sunEl) sunEl.style.display = theme === 'light' ? 'inline' : 'none';
+    
+    const menu = document.getElementById('mobileMenu');
+    if (menu) {
+        menu.style.background = theme === 'dark' ? '#151515' : '#fff';
+        menu.style.borderLeftColor = theme === 'dark' ? '#333' : '#d4d4d8';
+        menu.querySelectorAll('a').forEach(a => {
+            a.style.color = theme === 'dark' ? '#f0f0f0' : '#111';
+            a.style.borderBottomColor = theme === 'dark' ? '#333' : '#e4e4e7';
+        });
+    }
     
     if (theme === 'light') {
         b.style.background = '#ffffff';
