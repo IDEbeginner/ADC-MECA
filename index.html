@@ -747,6 +747,10 @@
                         </div>
                         <div class="file-list" id="fileList"></div>
                     </div>
+                    <!-- Honeypot anti-spam (invisible pour les humains) -->
+                    <div style="position:absolute;left:-9999px;top:-9999px;" aria-hidden="true">
+                        <input type="text" name="website" tabindex="-1" autocomplete="off">
+                    </div>
                     <button type="submit" class="btn btn-r btn-sub" id="submitBtn">Envoyer la demande</button>
                 </form>
                 <div class="form-loading" id="formLoading">
@@ -1143,6 +1147,9 @@ function renderFileList() {
     });
 }
 
+// Anti-spam: track form load time
+const formLoadedAt = Date.now();
+
 // Form submit
 document.getElementById('devisForm').addEventListener('submit', async function(e) {
     e.preventDefault();
@@ -1150,6 +1157,19 @@ document.getElementById('devisForm').addEventListener('submit', async function(e
     const form = this;
     const loading = document.getElementById('formLoading');
     const submitBtn = document.getElementById('submitBtn');
+
+    // Anti-spam: honeypot check (bots fill hidden fields)
+    if (d.website) {
+        document.getElementById('formOk').classList.add('show');
+        form.style.display = 'none';
+        return;
+    }
+
+    // Anti-spam: reject if submitted in less than 3 seconds (bot speed)
+    if (Date.now() - formLoadedAt < 3000) {
+        alert('Veuillez patienter quelques secondes avant d\'envoyer.');
+        return;
+    }
 
     // If EmailJS not configured, fallback to mailto
     if (EMAILJS_PUBLIC_KEY === 'TON_PUBLIC_KEY') {
