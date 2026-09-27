@@ -1188,14 +1188,10 @@ document.getElementById('devisForm').addEventListener('submit', async function(e
             message: d.message
         };
 
-        // Attach files if any (EmailJS supports attachments)
+        // Note: EmailJS free tier doesn't support large attachments
+        // Files are mentioned in the message but not attached
         if (uploadedFiles.length > 0) {
-            // Convert files to base64 for EmailJS
-            for (let i = 0; i < uploadedFiles.length && i < 3; i++) {
-                const base64 = await fileToBase64(uploadedFiles[i]);
-                templateParams['attachment' + (i + 1)] = base64;
-                templateParams['filename' + (i + 1)] = uploadedFiles[i].name;
-            }
+            templateParams.message += '\n\n📎 ' + uploadedFiles.length + ' fichier(s) joint(s) par le client : ' + uploadedFiles.map(f => f.name).join(', ') + '\n(Les fichiers ne peuvent pas être transmis par ce formulaire. Demandez-les par email ou téléphone.)';
         }
 
         await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams);
